@@ -12,7 +12,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 //sending index.html to homepage
 server.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/index.html'))
+    res.send('hello world')
 })
 
 
