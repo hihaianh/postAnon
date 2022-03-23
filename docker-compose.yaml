@@ -1,0 +1,34 @@
+version: '3'
+services:
+  server:
+    container_name: postAnon_server
+    image: node:12.18.4
+    working_dir: /code
+    ports: 
+      - 3000:3000
+    environment: 
+      - DB_NAME=anon
+      - DB_CONNECTION=mongodb://futureproof:anon@db:27017
+    depends_on:
+      - db
+    volumes:
+      - type: bind
+        source: ./api
+        target: /code
+    command: bash -c "npm install && npm start"
+
+  db:
+    container_name: mongo_db
+    image: mongo:latest
+    volumes:
+      - "dbdata:/var/lib/mongodb/data"
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=futureproof
+      - MONGO_INITDB_DATABASE=anon
+      - MONGO_INITDB_ROOT_PASSWORD=anon
+volumes:
+  dbdata:
+networks: 
+  default:
+    name: debug_api
