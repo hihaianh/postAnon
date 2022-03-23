@@ -6,7 +6,6 @@ const Story = require('../models/models.js')
 router.get('/:id', async (req, res) => {
 
     try {
-        console.log(req.params.id)
         const story = await Story.findStoryById(req.params.id)
         res.json(story)
     } catch(err) {

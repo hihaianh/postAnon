@@ -1,4 +1,4 @@
-const {MongoClient} =  require('mongodb')
+const {MongoClient} = require('mongodb')
 const connectionURL = process.env.DB_CONNECTION;
 
 const dbName = process.env.DB_NAME

@@ -1,5 +1,5 @@
-const {init} = require('../dbConfig')
-const { ObjectId } = require('mongodb')
+const { init } = require ('../dbConfig')
+const  {ObjectId} = require('mongodb')
 
 
 class Story {
@@ -9,7 +9,6 @@ class Story {
        this.name = data.name
        this.message = data.message
     }
-
     
     static create (title, name, message) { 
         return new Promise (async (resolve, reject) => {
@@ -27,15 +26,18 @@ class Story {
 
 
     static findStoryById (id) {
-        console.log(id)
         return new Promise (async (resolve, reject) => {
+
+            
             try {
                 const db = await init();
-                let storyData = await db.collection('blogPosts').filter({_id: ObjectId(id)})
+                let storyData = await db.collection('blogPosts').find({_id: ObjectId(id)}).toArray()
+                console.log('test',storyData)
                 let story = new Story({...storyData[0], id: storyData[0]._id})
+
                 resolve(story)
             } catch(err) {
-                reject('Blog post does not exist')
+                reject(`Blog post does not exist: ${err}`)
             }
         })
     }
