@@ -13,10 +13,9 @@ services:
       - db
     volumes:
       - type: bind
-        source: ./api
+        source: ./server
         target: /code
     command: bash -c "npm install && npm start"
-
   db:
     container_name: mongo_db
     image: mongo:latest
