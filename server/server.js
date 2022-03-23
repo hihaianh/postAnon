@@ -1,19 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const server = express();
+const app = express();
 const path = require('path');
-server.use(cors());
-server.use(express.json());
+app.use(cors());
+app.use(express.json());
 
 // for post requests- support parsing of json type post data
 const bodyParser = require('body-parser');
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //sending index.html to homepage
 server.get('/', (req, res) => {
     res.send('hello world')
 })
+
+module.exports = app;
 
 
 module.exports = server
