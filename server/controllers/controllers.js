@@ -15,8 +15,10 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
+        console.log("request",req.body)
         const story = await Story.create(req.body)
         res.json(story)
+        console.log("story", story)
     } catch(err) {
         res.status(404).json({err})
     }

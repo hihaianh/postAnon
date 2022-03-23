@@ -10,16 +10,16 @@ class Story {
        this.message = data.message
     }
     
-    static create (title, name, message) { 
+    static create (title, name, message, date) { 
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                let storyData = await db.collection('blogPosts').insertOne({ title, name, message})
+                let storyData = await db.collection('blogPosts').insertOne({ title, name, message, date})
                 let newStory = new Story(storyData.ops[0]);
                 resolve(newStory)
             }
             catch(err) {
-                reject('Error: story is not submitted');
+                reject(`Error: story is not submitted ${err}`);
             }
         })
     }
