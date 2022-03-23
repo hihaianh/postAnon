@@ -8,7 +8,7 @@ services:
       - 3000:3000
     environment: 
       - DB_NAME=anon
-      - DB_CONNECTION=mongodb://futureproof:anon@db:27017
+      - DB_CONNECTION=mongodb://futureproof:anonpass@db:27017
     depends_on:
       - db
     volumes:
@@ -25,9 +25,7 @@ services:
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=futureproof
       - MONGO_INITDB_DATABASE=anon
-      - MONGO_INITDB_ROOT_PASSWORD=anon
+      - MONGO_INITDB_ROOT_PASSWORD=anonpass
 volumes:
   dbdata:
-networks: 
-  default:
-    name: debug_api
+
