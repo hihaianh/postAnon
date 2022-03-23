@@ -11,6 +11,19 @@ class Story {
     }
 
     
+    static get all() {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init()
+                const storyData = await db.collection('blogPost')
+                const stories = storyData.map(s => new Story(s))
+                resolve(stories)
+            } catch(err) {
+                reject("Error: no stories")
+            }
+        })
+    }
+
     static create (title, name, message) { 
         return new Promise (async (resolve, reject) => {
             try {
