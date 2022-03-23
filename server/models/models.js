@@ -1,4 +1,5 @@
-const init = require('../dbConfig')
+const {init} = require('../dbConfig')
+const { ObjectId } = require('mongodb')
 
 
 class Story {
@@ -26,6 +27,7 @@ class Story {
 
 
     static findStoryById (id) {
+        console.log(id)
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
